@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { SearchMovie } from './dto/search-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 
@@ -41,10 +42,13 @@ export class MoviesService {
     this.movies = this.movies.filter(movie => movie.id !== id);
   }
 
-  search(query) : Movie[] {
+  search(query: SearchMovie) : Movie[] {
     let results: Movie[] = this.movies;
     for (const key in query) {
-      results = this.movies.filter(movie => movie[key] === query[key]);
+      console.log(key);
+      console.log(query[key]);
+      
+      results = results.filter(movie => movie[key] === query[key]);
     }
     return results;
   }

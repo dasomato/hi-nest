@@ -15,6 +15,7 @@ export class MoviesController {
 
   @Get('/search')
   search(@Query() query: SearchMovie) {
+    console.log(typeof query.year);
     return this.moviesService.search(query);
   }
 
